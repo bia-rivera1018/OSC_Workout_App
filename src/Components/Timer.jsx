@@ -129,7 +129,7 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
   }
 
   return (
-    <div style={{ textAlign: "center", padding: "1rem" }}>
+    <div className="timer-container" style={{ textAlign: "center", padding: "1rem" }}>
       <h2>Rest Timer</h2>
 
       <div
@@ -140,6 +140,7 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
         {formatTime(secondsLeft)}
       </div>
       <progress
+        className="timer-progress"
         value={secondsLeft}
         max={duration}
         style={{ width: "250px" }}
@@ -148,6 +149,7 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
       <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}>
         {PRESETS.map((seconds) => (
           <button
+            className="timer-button"
             key={seconds}
             onClick={() => handlePreset(seconds)}
             disabled={isRunning}
@@ -160,6 +162,7 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
 
       <div style={{ marginTop: "1rem" }}>
         <input
+          className="timer-input"
           type="number"
           placeholder="Custom seconds"
           value={customTime}
@@ -169,6 +172,7 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
         />
 
         <button
+          className="timer-button"
           onClick={handleCustomTime}
           disabled={isRunning}
         >
@@ -182,6 +186,7 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
         </label>
 
         <select
+          className="timer-select"
           id="timer-sound"
           value={soundType}
           onChange={(event) => setSoundType(event.target.value)}
@@ -202,13 +207,13 @@ export default function Timer({ initialSeconds = 60, onComplete }) {
         }}
       >
         {isRunning ? (
-          <button onClick={handlePause}>Pause</button>
+          <button className="timer-button" onClick={handlePause}>Pause</button>
         ) : (
-          <button onClick={handleStart}>Start</button>
+          <button className="timer-button" onClick={handleStart}>Start</button>
         )}
-        <button onClick={handleReset}>Reset</button>
+        <button className="timer-button" onClick={handleReset}>Reset</button>
 
-        <button onClick={addThirtySeconds}>
+        <button className="timer-button" onClick={addThirtySeconds}>
           +30s
         </button>
       </div>

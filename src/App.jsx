@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import './App.css';
 import Login from './Components/Login';
@@ -8,7 +8,12 @@ import Home from './Pages/Home';
 import Session from './Components/Session';
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
     <Router>
       <div className={`App theme-${theme}`}>
